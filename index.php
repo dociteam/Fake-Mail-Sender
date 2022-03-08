@@ -7,16 +7,7 @@ $cc = "From: " . $from . "\r\n" . "CC: " . $from;
 $submit = $_POST["submit"];
 
 
-if(isset($submit)){
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        if(empty($from) || empty($to) || empty($sub)){
-            echo "<center><h2>Please Complete All Of Them!</h2></center>";
-        }else{
-            mail($to,$sub,$text,$cc);
-            echo "<script>alert('Mail Has Been Sent!'); </script>";
-        }
-    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +26,18 @@ if(isset($submit)){
         <br><textarea name="text" placeholder="Your Message Here" rows="4" cols="40"></textarea>
         <br><input type="submit" name="submit" value="Send">
     </form>
+    <?php
+if(isset($submit)){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if(empty($from) || empty($to) || empty($sub)){
+            echo "<h2>Please Complete All Of Them!</h2>";
+        }else{
+            mail($to,$sub,$text,$cc);
+            echo "<b>Mail Has Been Sent!</b>";
+        }
+    }
+}
+    ?>
     </center>
     
 </body>
